@@ -20,7 +20,7 @@ jobs:
 
       - name: Install React Native CLI
         run: |
-          npm install -g react-native-cli
+          yarn add react-native-cli
 
       #- name: Install Dependencies
       #  run: |
@@ -29,11 +29,11 @@ jobs:
 
       - name: Build React Native Project
         run: |
-          npx react-native run-windows
+          yarn windows
 
       - name: Run Tests
         run: |
-          npm test
+          yarn test
 
       - name: Deploy to Production
         if: success()
