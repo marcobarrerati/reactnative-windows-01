@@ -1,31 +1,27 @@
-name: Build React Native App for Windows
-
+name: Build React Native Windows
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 20.10.0
 
+      # Add more steps here for building and deploying your React Native Windows app
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
-      - name: Build app for Windows
-        run: npx react-native windows --config windows/windows.json
+      - name: Build Windows executable
+        run: npx react-native-windows-init --version 0.64.0
 
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: windows-build
-          path: windows/MyAppReactNative.sln
+      - name: Create Windows executable
+        run: npx react-native-windows-make --arch x64
+
+      # Add more steps here for further build configurations and deployment
