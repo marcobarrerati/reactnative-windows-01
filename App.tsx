@@ -68,7 +68,7 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Text>App React Native Windows</Text>
+      <Text>App React Native Windows!</Text>
 
       {/*<StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
