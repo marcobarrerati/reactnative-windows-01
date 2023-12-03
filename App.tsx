@@ -8,6 +8,7 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,6 +25,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import UserProfile from './app/Main';
+import Main from './app/Main';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -31,6 +34,7 @@ type SectionProps = PropsWithChildren<{
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -64,7 +68,9 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar
+      <Text>App React Native Windows</Text>
+
+      {/*<StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
@@ -72,6 +78,8 @@ function App(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Button title="click me" color={isDarkMode ? 'grey' : 'orange'} />
+
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -92,6 +100,7 @@ function App(): JSX.Element {
           <LearnMoreLinks />
         </View>
       </ScrollView>
+      */}
     </SafeAreaView>
   );
 }
