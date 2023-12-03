@@ -1,4 +1,5 @@
-name: Build React Native Windows
+name: CI/CD
+
 on:
   push:
     branches:
@@ -6,22 +7,27 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        node: [20]
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 20.10.0
+          node-version: ${{ matrix.node }}
 
-      # Add more steps here for building and deploying your React Native Windows app
-      - name: Install dependencies
-        run: yarn install
+      - name: Install Dependencies
+        run: |
+          npm install
+          # For React Native, you might also want to run "npx pod-install" for iOS projects.
 
-      - name: Build Windows executable
-        run: npx react-native-windows-init --version 0.64.0
-
-      - name: Create Windows executable
-        run: npx react-native-windows-make --arch x64
-
-      # Add more steps here for further build configurations and deployment
+      - name: Build and Test
+        run: |
+          npm run build
+          npm test
