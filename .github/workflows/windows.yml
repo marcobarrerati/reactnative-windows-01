@@ -1,4 +1,4 @@
-name: CI/CD for React Native (Windows)
+name: CI/CD React Native Windows
 
 on:
   push:
@@ -10,24 +10,32 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout Code
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 20.10.0
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.0.2
-        with:
-          vs-version: 16.8
+      - name: Install React Native CLI
+        run: |
+          npm install -g react-native-cli
 
-      - name: Install node modules
-        run: yarn --frozen-lockfile
+      #- name: Install Dependencies
+      #  run: |
+      #    npm install
+      #    npx pod-install  # For iOS dependencies, if needed
 
-      - name: yarn build
-        run: yarn build
+      - name: Build React Native Project
+        run: |
+          npx react-native run-windows
 
-      - name: Run Windows x64 release
-        run: npx react-native run-windows --arch x64 --release --logging
+      - name: Run Tests
+        run: |
+          npm test
+
+      - name: Deploy to Production
+        if: success()
+        run: |
+          # Your deployment commands here
