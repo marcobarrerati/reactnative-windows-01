@@ -8,15 +8,19 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "windows": "react-native run-windows"
+    "windows": "react-native run-windows",
+    "windows-release": "react-native run-windows --release"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
     "@react-navigation/stack": "^6.3.20",
     "react": "18.2.0",
     "react-native": "0.72.7",
+    "react-native-navigation": "^7.37.2",
     "react-native-safe-area-context": "^4.7.4",
     "react-native-safe-area-view": "^1.1.1",
+    "react-native-screens": "^3.27.0",
     "react-native-windows": "0.72.20"
   },
   "devDependencies": {

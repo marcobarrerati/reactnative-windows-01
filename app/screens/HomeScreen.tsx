@@ -1,12 +1,18 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text} from 'react-native';
+import {Button} from 'react-native-windows';
 
 const HomeScreen: React.FC = () => {
-  // Aquí puedes agregar la lógica de autenticación de usuario
-
+  const navigation = useNavigation();
   return (
-    <View>
-      <Text>Welcome to the Home Screen!</Text>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Welcome to the Home ScreenA!</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+      <Button title="ingresar" onPress={() => navigation.navigate('Auth')} />
     </View>
   );
 };
